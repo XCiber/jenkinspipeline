@@ -27,6 +27,12 @@ stages{
             }
         }
 
+        stage('Deploy to staging') {
+            steps {
+                build job: 'deploy-to-staging'
+            }
+        }
+
         // stage ('Deployments'){
         //     parallel{
         //         stage ('Deploy to Staging'){
