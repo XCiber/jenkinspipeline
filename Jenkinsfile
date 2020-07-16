@@ -33,6 +33,24 @@ stages{
             }
         }
 
+        stage('Deploy to PROD') {
+            timeout(time:5, unit:'DAYS'){
+                input message: 'Approve PRODUCTION deployment?'
+            }
+            steps {
+                build job: 'deploy-to-prod'
+            }
+            post {
+                success {
+                    echo 'Code deployed to Prodiction.'
+                }
+                failure {
+                    echo 'Deployment failed.'
+                }
+            }
+        }
+
+
         // stage ('Deployments'){
         //     parallel{
         //         stage ('Deploy to Staging'){
